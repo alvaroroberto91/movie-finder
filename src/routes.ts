@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { SaveFilmsAtDataBaseController } from "./modules/films/useCases/saveFilmsAtDataBase/SaveFilmsAtDataBaseController"
-import { ListFilmsOnDataBaseController } from "./modules/films/useCases/listFilmsOnDataBase/ListFilmsOnDataBaseController";
+import { SaveFilmsAtDataBaseController } from "./modules/films/useCases/saveFilmsItDataBase/SaveFilmsAtDataBaseController"
+import { ListFilmsOnDataBaseController } from "./modules/films/useCases/listFilmsInDataBase/ListFilmsOnDataBaseController";
 const routes = Router();
 
 const saveFilmsAtDataBaseController = new SaveFilmsAtDataBaseController();
