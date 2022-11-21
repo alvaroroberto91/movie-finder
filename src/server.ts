@@ -1,7 +1,12 @@
 import express, {NextFunction, Request, Response} from "express";
 import "express-async-errors";
+import mongoose from "mongoose";
 import { routes } from "./routes"
 const app = express();
+const dbURL = 'mongodb://root:root@localhost:27017/admin'
+
+mongoose.connect(dbURL);
+
 
 app.use(express.json());
 app.use(routes);
