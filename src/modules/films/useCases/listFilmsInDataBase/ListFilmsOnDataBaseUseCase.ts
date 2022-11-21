@@ -8,7 +8,10 @@ export class ListFilmsOnDataBaseUseCase {
     const offset = parseInt(request.query.skip as string);
     const limit = parseInt(request.query.limit as string);
 
-    const filmsModel = await FilmsModel.find().skip(offset).limit(limit);
+    const filmsModel = await FilmsModel.find()
+    .skip(offset)
+    .limit(limit)
+    .sort({release_date: 1});
     return filmsModel;
   }
 }
