@@ -115,6 +115,31 @@
             "description": "Not found"
           }
         }
+      }      
+    },
+    "/delete-films":{
+      "delete": {
+        "summary": "Delete all list of films collection",
+        "description": "```A simple delete route created for use in swagger",
+        "parameters": [],
+        "tags": [
+          "Films"
+        ],
+        "x-code-samples": [],
+        "responses": {
+          "200": {
+            "description": "Collection Successfully Deleted",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
       }
     }
   },
