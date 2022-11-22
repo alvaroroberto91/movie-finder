@@ -12,26 +12,28 @@ export class VerifySavedFilms {
     let list_data = [];
     let list_db = [];
 
-    for(let i = 0; i < responseDataOfApiCall.length; i++) {
+    responseDataOfApiCall.forEach(function(data) {
       list_data.push({
-        title: responseDataOfApiCall[i].title, 
-        original_title: responseDataOfApiCall[i].original_title,
-        description: responseDataOfApiCall[i].description,
-        rt_score: responseDataOfApiCall[i].rt_score,
-        release_date: responseDataOfApiCall[i].release_date,
+        title: data.title, 
+        original_title: data.original_title,
+        description: data.description,
+        rt_score: data.rt_score,
+        release_date: data.release_date,
       });
-    }
+    });
 
-    for(let i = 0; i < listOfFilmsOnDataBase.length; i++) {
+    listOfFilmsOnDataBase.forEach(function(save) {
       list_db.push({
-        title: listOfFilmsOnDataBase[i].title, 
-        original_title: listOfFilmsOnDataBase[i].original_title,
-        description: listOfFilmsOnDataBase[i].description,
-        rt_score: listOfFilmsOnDataBase[i].rt_score,
-        release_date: listOfFilmsOnDataBase[i].release_date,
+        title: save.title, 
+        original_title: save.original_title,
+        description: save.description,
+        rt_score: save.rt_score,
+        release_date: save.release_date,
       });
-    }
+    });
+
     const result = difference(list_db, list_data);
+    console.log(result.length)
     return result;
   }
 }
