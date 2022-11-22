@@ -1,26 +1,31 @@
+import { ExecuteSaveDataAtDataBase } from "../../../../utils/ExecuteSaveDataAtDataBase";
 import { GetFilmsFromApi } from "../../../../api/GetFilmsFromApi";
-import filmsModel from "../../../../models/FilmsModel";
+import { VerifySavedFilms } from "../../../../middleware/VerifySavedFilms";
 
 
 export class SaveFilmsAtDataBaseUseCase {
   async execute() {
-    let listOfSalvedFilms = [];
     try {
       const getFilmsApi = new GetFilmsFromApi();
       const result = await getFilmsApi.execute();
       
-      for(let i = 0; i < result.length; i++) {
-        let saveFilmsProperty = new filmsModel({
-          title: result[i].title, 
-          original_title: result[i].original_title,
-          description: result[i].description,
-          rt_score: result[i].rt_score,
-          release_date: result[i].release_date,
-        });
-        await saveFilmsProperty.save();
-        listOfSalvedFilms.push(saveFilmsProperty);
-      };
-      return listOfSalvedFilms
+      const saveDataAtDataBase = new ExecuteSaveDataAtDataBase();
+
+      const verifySavedFilms = new VerifySavedFilms();
+      const verifiedDataReturn = await verifySavedFilms.execute();
+      
+      if(verifiedDataReturn.length) {
+        const responseOfSavedData = await saveDataAtDataBase.execute(verifiedDataReturn);
+        return responseOfSavedData;
+      }
+      if(!verifiedDataReturn.lengh) {
+        throw new Error("Unable to insert data already registered")
+      }
+
+      const responseOfSavedData = await saveDataAtDataBase.execute(result);
+
+
+      return responseOfSavedData;
 
     } catch (e) {
       throw e
