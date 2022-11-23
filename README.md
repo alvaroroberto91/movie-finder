@@ -28,3 +28,8 @@ After the server starts, go to the following URL using your browser to see all t
 
 "http://localhost:3000/docs"
 ```
+
+```sh
+Note: "A Docker container with the official MongoDB image was used"
+```
+
