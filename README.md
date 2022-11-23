@@ -9,12 +9,6 @@ Install all dependencies
 ```
 
 ```sh
-The project was created using typescript, so after installing all dependencies, run the following command:
-
- "npx tsc --init" || "yarn tsc --init"
-```
-
-```sh
 Create .env file with the following variables:
 
 "API_URL=https://ghibliapi.herokuapp.com/films?limit=200"
