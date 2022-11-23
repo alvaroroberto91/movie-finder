@@ -9,7 +9,7 @@ Install all dependencies
 ```
 
 ```sh
-Create .env file with the following variables:
+Create .env file in your project root with the following variables:
 
 "API_URL=https://ghibliapi.herokuapp.com/films?limit=200"
 "DB_URI=mongodb://your_db_user:your_db_pass@localhost:your_db_port/your_database_name"
