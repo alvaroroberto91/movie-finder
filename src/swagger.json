@@ -120,7 +120,7 @@
     "/delete-films":{
       "delete": {
         "summary": "Delete all list of films collection",
-        "description": "```A simple delete route created for use in swagger",
+        "description": "`A simple delete route created for use in swagger`\n\n\n",
         "parameters": [],
         "tags": [
           "Films"

@@ -33,7 +33,6 @@ export class VerifySavedFilms {
     });
 
     const result = difference(list_db, list_data);
-    console.log(result.length)
     return result;
   }
 }
