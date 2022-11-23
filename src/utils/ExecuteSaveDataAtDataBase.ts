@@ -1,7 +1,15 @@
 import FilmsModel from "../models/FilmsModel";
 
+interface DataParams {
+  title: string,
+  original_title: string,
+  description: string,
+  rt_score: string,
+  release_date: string
+}
+
 export class ExecuteSaveDataAtDataBase {
-  async execute(data: any) {
+  async execute(data: DataParams[]) {
     const responseApi = data;
     let listOfSavedFilms = [];
     for(let i = 0; i < responseApi.length; i++) {
