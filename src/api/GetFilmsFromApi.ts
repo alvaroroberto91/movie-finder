@@ -1,4 +1,6 @@
+require('dotenv').config()
 import axios from "axios";
+
 
 interface IGetFilms {
   title: string,
@@ -11,9 +13,10 @@ interface IGetFilms {
 
 export class GetFilmsFromApi {
   async execute() {
+    const api_url = process.env.API_URL
     try{
       const { data } = await axios.get<Array<IGetFilms>>(
-        'https://ghibliapi.herokuapp.com/films?limit=200',
+        api_url,
         {
           headers: {},
         },
