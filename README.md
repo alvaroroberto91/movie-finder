@@ -11,7 +11,7 @@ Install all dependencies
 ```sh
 Create .env file in your project root with the following variables:
 
-"API_URL=https://ghibliapi.herokuapp.com/films?limit=200"
+"API_URL=https://ghibliapi.herokuapp.com/films?"
 "DB_URI=mongodb://your_db_user:your_db_pass@localhost:your_db_port/your_database_name"
 
 The default port used by mongo is: 27017
