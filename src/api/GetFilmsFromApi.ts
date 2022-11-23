@@ -13,10 +13,11 @@ interface IGetFilms {
 
 export class GetFilmsFromApi {
   async execute() {
-    const api_url = process.env.API_URL
+    const api_url = process.env.API_URL;
+    const limit = "limit=200";
     try{
       const { data } = await axios.get<Array<IGetFilms>>(
-        api_url,
+        api_url + limit,
         {
           headers: {},
         },
