@@ -1,0 +1,189 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Find Films Api",
+    "description":  "# Find Films Api \n It is an API that searches a list of films registered in Studio Ghibli, processes the received data and saves the following parameters:\n\n`title | original_title | description | rt_score | release_date`\n\n",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3000",
+  "schemes": [
+    "http"
+  ],
+  "x-tagGroups": [
+    {
+      "name": "Endpoints",
+      "tags": [
+        "Films"
+      ]
+    }
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/get-films": {
+      "get": {
+        "summary": "Get the list of films",
+        "description": "Route responsible for searching the list of movies in the API, saving the information in the database\n and returning the saved data.\n\n ```\n\n This APP has a validation of the data that is returned by the API of Ghibli to avoid insertion of repeated values ​​in the base. The APP makes a comparison of the data returned by Ghibli with the data saved in the base. If there is new data, the APP only saves this new data. If all data are the same as those saved, the APP returns an exception.\n\n",
+        "parameters": [],
+        "tags": [
+          "Films"
+        ],
+        "x-code-samples": [],
+        "responses": {
+          "200": {
+            "description": "A single data returned after saving",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Films"
+              }
+            },
+            "examples": {
+              "application/json": {
+                "title": "Castle in the Sky",
+                "original_title": "天空の城ラピュタ",
+                "description": "The orphan Sheeta inherited a mysterious crystal that links her to the mythical sky-kingdom of Laputa. With the help of resourceful Pazu and a rollicking band of sky pirates, she makes her way to the ruins of the once-great civilization. Sheeta and Pazu must outwit the evil Muska, who plans to use Laputa's science to make himself ruler of the world.",
+                "rt_score": "95",
+                "release_date": "1986",
+                "_id": "637d51c93f54fb7b55d97230",
+                "__v": 0
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/list-films": {
+      "get": {
+        "summary": "Return all films",
+        "description": "The Films endpoint returns information about all saved films infos.\n",
+        "tags": [
+          "Films"
+        ],
+        "parameters": [
+          {
+            "limit": null,
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "Amount of results (default Max Length) (maximum 200)",
+            "type": "string"
+          },
+          {
+            "skip": null,
+            "name": "offset",
+            "in": "query",
+            "description": "Indicates the start of reading the file",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An array of films",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Films"
+              }
+            },
+            "examples": {
+              "application/json": [
+                {
+                  "_id": "637cef8849b7cdb6e166d48b",
+                  "title": "Castle in the Sky",
+                  "original_title": "天空の城ラピュタ",
+                  "description": "The orphan Sheeta inherited a mysterious crystal that links her to the mythical sky-kingdom of Laputa. With the help of resourceful Pazu and a rollicking band of sky pirates, she makes her way to the ruins of the once-great civilization. Sheeta and Pazu must outwit the evil Muska, who plans to use Laputa's science to make himself ruler of the world.",
+                  "rt_score": "95",
+                  "release_date": "1986",
+                  "__v": 0
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }      
+    },
+    "/delete-films":{
+      "delete": {
+        "summary": "Delete all list of films collection",
+        "description": "`A simple delete route created for use in swagger`\n\n\n",
+        "parameters": [],
+        "tags": [
+          "Films"
+        ],
+        "x-code-samples": [],
+        "responses": {
+          "200": {
+            "description": "Collection Successfully Deleted",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Films": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "description": "Unique identifier representing a specific film"
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of the film"
+        },
+        "original_title": {
+          "type": "string",
+          "description": "Original title of the film"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the film"
+        },
+        "rt_score": {
+          "type": "string",
+          "description": "Rotten Tomato score of film"
+        },
+        "release_date": {
+          "type": "string",
+          "description": "Release year of film"
+        },
+        "__v": {
+          "type": "integer",
+          "description": "A mongoose schema version key"
+        }
+      }
+    },
+    "Error": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

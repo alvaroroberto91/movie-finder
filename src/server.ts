@@ -1,14 +1,20 @@
+require('dotenv').config()
 import express, {NextFunction, Request, Response} from "express";
 import "express-async-errors";
 import mongoose from "mongoose";
 import { routes } from "./routes"
+const dbURL = process.env.DB_URI;
+import swaggerUi from "swagger-ui-express";
+import swaggerFile from './swagger.json'
+import cors from "cors"
 const app = express();
-const dbURL = 'mongodb://root:root@localhost:27017/admin'
 
 mongoose.connect(dbURL);
 
 
 app.use(express.json());
+app.use(cors());
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 app.use(routes);
 
 app.use((err: Error, request: Request, response: Response, next: NextFunction) => {
