@@ -9,13 +9,7 @@ Install all dependencies
 ```
 
 ```sh
-The project was created using typescript, so after installing all dependencies, run the following command:
-
- "npx tsc --init" || "yarn tsc --init"
-```
-
-```sh
-Create .env file with the following variables:
+Create .env file in your project root with the following variables:
 
 "API_URL=https://ghibliapi.herokuapp.com/films?limit=200"
 "DB_URI=mongodb://your_db_user:your_db_pass@localhost:your_db_port/your_database_name"
@@ -34,3 +28,8 @@ After the server starts, go to the following URL using your browser to see all t
 
 "http://localhost:3000/docs"
 ```
+
+```sh
+Note: "A Docker container with the official MongoDB image was used"
+```
+
